@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/backend/.vs
+/backend/src/.vs
+/backend/src/Finit.Api/bin/Debug/net9.0
+/backend/src/Finit.Api/obj
+/backend/src/Finit.Application/bin/Debug/net9.0
+/backend/src/Finit.Application/obj
+/backend/src/Finit.Domain/bin/Debug/net9.0
+/backend/src/Finit.Domain/obj
+/backend/src/Finit.Infrastructure/bin/Debug/net9.0
+/backend/src/Finit.Infrastructure/obj
+/backend/tests/Finit.Test/bin
+/backend/tests/Finit.Test/obj
