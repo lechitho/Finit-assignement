@@ -385,11 +385,11 @@ div.table {
       width: 100%;
   }
     div.table > table > thead > tr > th:first-of-type{
-      width: 1px;
+      
     }
     div.table > table > tbody > tr:not(:last-child) > td:first-of-type{
-      width: 1px;
-      text-align: center;
+      
+      text-align: left;
     }
       div.table > table > tbody {
           background: #ffffff;
@@ -525,10 +525,18 @@ h2 {
   white-space: nowrap;
 }
 
-.task-details{
+.task-description{
   height: 100px;
 }
 
+
 a.add-new{
   cursor: pointer;
+}
+
+td.title, th.title{
+  width: 30%;
+}
+td.description, th.description{
+  width: 60%;
 }
