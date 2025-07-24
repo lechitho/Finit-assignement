@@ -31,22 +31,7 @@ export class TaskComponent implements OnInit, OnDestroy {
     this.getAllTasks();
   }
 
-  updateStatus(id: number | undefined, isCompleted : boolean | undefined): void{
-    this.subscriptions.push(
-      this.taskService.updateTaskStatus(id!, isCompleted!).subscribe(
-        value => {
-        },
-        err => {
-          this.errorHandler.handleError(err);
-          this.errMsg = this.errorHandler.errMsg;
-          this.title = "ERROR MESSAGE";
-          $("#errorModal").show();
-        }
-      )
-    )
-  };
-
-  openEditTask(id: number | undefined) : void{
+  openEditTask(id: string | undefined) : void{
     const taskEditForm = this.popupModal.open(AddUpdateComponent,{
       windowClass: "dialogue",
       size: "lg"
@@ -91,7 +76,7 @@ export class TaskComponent implements OnInit, OnDestroy {
     $("#successModal").hide();
   }
 
-  delete(id: number | undefined): void {
+  delete(id: string | undefined): void {
     this.subscriptions.push(
       this.taskService.deleteTask(id!).subscribe(
         value => {

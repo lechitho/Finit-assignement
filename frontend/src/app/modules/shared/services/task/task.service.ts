@@ -10,7 +10,7 @@ import {CACHE_KEYS} from "../../../../models/cache-keys";
 })
 export class TaskService {
 
-  private baseUrl: string = "https://localhost:44357/api";
+  private baseUrl: string = "https://localhost:7200/api";
 
   constructor(private client: HttpClient, private cache: CacheService) { }
 
@@ -20,30 +20,25 @@ export class TaskService {
     if (tasks) {
       return new BehaviorSubject<TaskInfo[]>(JSON.parse(tasks));
     }
-    return this.client.get<TaskInfo[]>(this.baseUrl + "/Tasks").pipe(tap(v => this.cache.saveData(CACHE_KEYS.TASKS, JSON.stringify(v))));
+    return this.client.get<TaskInfo[]>(this.baseUrl + "/Task").pipe(tap(v => this.cache.saveData(CACHE_KEYS.TASKS, JSON.stringify(v))));
   }
 
   public getTask(id: string): Observable<TaskInfo> {
-    return this.client.get<TaskInfo>(this.baseUrl + "/Tasks/" + id);
+    return this.client.get<TaskInfo>(this.baseUrl + "/Task/" + id);
   }
 
   public createTask(body: any): Observable<TaskInfo> {
     this.cache.removeData(CACHE_KEYS.TASKS);
-    return this.client.post<TaskInfo>(this.baseUrl + "/Tasks", body);
+    return this.client.post<TaskInfo>(this.baseUrl + "/Task", body);
   }
 
   public updateTask(id: string, body: any): Observable<any> {
     this.cache.removeData(CACHE_KEYS.TASKS);
-    return this.client.put<any>(this.baseUrl + "/Tasks/" + id, body);
+    return this.client.put<any>(this.baseUrl + "/Task/" + id, body);
   }
 
-  public updateTaskStatus(id: number, isCompleted: boolean): Observable<any> {
+  public deleteTask(id: string): Observable<any> {
     this.cache.removeData(CACHE_KEYS.TASKS);
-    return this.client.put<any>(this.baseUrl + "/Tasks/" + id +"/completed/" + isCompleted, null);
-  }
-
-  public deleteTask(id: number): Observable<any> {
-    this.cache.removeData(CACHE_KEYS.TASKS);
-    return this.client.delete(this.baseUrl + "/Tasks/" + id);
+    return this.client.delete(this.baseUrl + "/Task/" + id);
   }
 }

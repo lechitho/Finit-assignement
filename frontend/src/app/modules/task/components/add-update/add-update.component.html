@@ -9,12 +9,18 @@
 
   <form class="mt-3" [formGroup]="taskForm">
     <fieldset class="required">
-    <div class="mb-3">
-      <label for="details" class="form-label">Details</label>
-      <small class="text-danger float-end" [class.d-none]="!formErrors.details">{{formErrors.details}}</small>
-      <textarea class="form-control task-details" id="name" formControlName="details" [class.is-invalid]="formErrors.details" (blur)="checkValidation()" rows="2" cols="20"></textarea>
-    </div>
-  </fieldset>
+      <div class="mb-3">
+        <label for="details" class="form-label">Title</label>
+        <small class="text-danger float-end" [class.d-none]="!formErrors.title">{{formErrors.title}}</small>
+        <input class="form-control" id="title" formControlName="title" [class.is-invalid]="formErrors.title" (blur)="checkValidation()"/>
+      </div>
+    </fieldset>
+    <fieldset class="required">
+      <div class="mb-3">
+        <label for="details" class="form-label">Description</label>
+        <textarea class="form-control task-description" id="description" formControlName="description" rows="2" cols="20"></textarea>
+      </div>
+    </fieldset>
     <div class="footer">
       <p class="commands">
         <span class="grow"></span>

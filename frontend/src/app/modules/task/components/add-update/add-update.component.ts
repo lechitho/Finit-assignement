@@ -23,12 +23,12 @@ export class AddUpdateComponent implements OnInit, OnDestroy {
   id: string = "";
   task: TaskInfo = {};
   validationMessages: any = {
-    "details": {
+    "title": {
       "required": "Required"
-    },
+    }
   };
   formErrors: any = {
-    "details": ""
+    "title": ""
   };
   subscriptions: Subscription[] = [];
 
@@ -40,8 +40,8 @@ export class AddUpdateComponent implements OnInit, OnDestroy {
               private router: Router) {
     this.taskForm = this.formBuilder.group({
       id: [''],
-      details: ['', Validators.required],
-      completed: [''],
+      title: ['', Validators.required],
+      description: [''],
     });
   }
 
@@ -97,8 +97,7 @@ export class AddUpdateComponent implements OnInit, OnDestroy {
     if (this.taskForm.valid) {
       this.task = this.taskForm.value;
       if (this.id === undefined) {
-        this.task.id = 0;
-        this.task.completed = false;
+        this.task.id = '';
         this.subscriptions.push(
           this.taskService.createTask(this.task).subscribe(
             data => {

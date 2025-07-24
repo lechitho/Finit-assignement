@@ -1,7 +1,7 @@
 export interface TaskInfo {
-  id?: number;
-  completed?: boolean;
-  details?: string;
+  id?: string;
+  title?: string;
+  description?: string;
 }
 
 export interface TaskResponse {
